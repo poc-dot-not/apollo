@@ -17,6 +17,7 @@ namespace Apollo.Service
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -27,6 +28,7 @@ namespace Apollo.Service
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHealthChecks("/health");
             app.UseMvc();
         }
     }
