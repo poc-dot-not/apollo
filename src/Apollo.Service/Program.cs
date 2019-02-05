@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Serilog;
 
 namespace Apollo.Service
 {
@@ -11,6 +12,8 @@ namespace Apollo.Service
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder<Startup>(args);
+            WebHost.CreateDefaultBuilder<Startup>(args)
+                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                    .ReadFrom.Configuration(hostingContext.Configuration));
     }
 }
